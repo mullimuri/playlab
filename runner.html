@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#6d4aff">
+  <meta name="description" content="AI가 만든 HTML 게임을 붙여넣거나 기기에서 선택해서 실행하는 플레이랩 실험실">
+  <title>HTML 실행기 — 플레이랩</title>
+  <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./css/styles.css">
+  <link rel="stylesheet" href="./css/runner.css">
+  <script defer src="./js/runner-core.js"></script>
+  <script defer src="./js/runner-example.js"></script>
+  <script defer src="./js/runner.js"></script>
+</head>
+<body class="runner-page">
+<a class="skip-link" href="#html-code">HTML 입력으로 바로 가기</a>
+<header class="site-header wrap">
+  <a class="brand" href="./index.html"><span class="brand-mark" aria-hidden="true">✦</span> 플레이랩 <span class="brand-en">PLAY LAB</span></a>
+  <nav class="lab-nav" aria-label="주요 메뉴"><a href="./index.html">프롬프트 만들기</a><a href="./runner.html" aria-current="page">HTML 실행기</a></nav>
+</header>
+<main class="wrap">
+  <section class="runner-hero" aria-labelledby="runner-title">
+    <div><p class="eyebrow">PLAY LAB / HTML PLAYER <span class="version-tag">예시 버전</span></p><h1 id="runner-title">만든 게임,<br><span>여기서 플레이.</span></h1><p>AI가 만든 HTML을 붙여넣고 실행해 보세요.<br>파일 미리보기가 안 되는 기기에서도 웹페이지 안에서 열 수 있어요.</p></div>
+    <div class="runner-guide"><span class="guide-symbol" aria-hidden="true">▶</span><h2>복사 → 붙여넣기 → 실행</h2><p>HTML·CSS·JavaScript가 모두 들어 있는<br><strong>하나의 HTML 코드</strong>를 준비해 주세요.</p><button id="load-example-top" class="text-button" type="button">코드가 없다면? 예시 게임 해 보기 <span aria-hidden="true">↗</span></button></div>
+  </section>
+  <div class="runner-workspace">
+    <section class="panel code-panel" aria-labelledby="code-title">
+      <div class="section-heading"><span class="step-icon" aria-hidden="true">01</span><div><h2 id="code-title">게임 코드 가져오기</h2><p>AI의 설명 대신 HTML 코드 전체를 복사하세요.</p></div></div>
+      <div class="import-row"><label class="file-button" for="html-file"><span aria-hidden="true">＋</span> HTML 파일 선택<input id="html-file" type="file" accept=".html,.htm,text/html" aria-describedby="file-help"></label><button id="load-example" class="small-button" type="button">예시 불러오기</button></div>
+      <p id="file-help" class="field-hint">기기의 파일을 읽기만 해요. .html / .htm · 최대 2MB · UTF-8</p>
+      <div class="code-label"><label for="html-code">또는 HTML 코드 붙여넣기</label><span id="code-count">0자</span></div>
+      <textarea id="html-code" class="code-input" spellcheck="false" autocapitalize="off" autocomplete="off" autocorrect="off" aria-describedby="code-help" placeholder="여기를 길게 눌러 붙여넣으세요.&#10;&#10;&lt;!doctype html&gt;&#10;&lt;html&gt;&#10;  ...AI가 만든 코드 전체...&#10;&lt;/html&gt;"></textarea>
+      <p id="code-help" class="field-hint">수정 후에는 실행 버튼을 다시 눌러 주세요. 새로고침하면 입력한 코드는 사라져요.</p>
+      <div class="run-actions"><button id="run-code" class="button primary" type="button"><span aria-hidden="true">▶</span> 게임 실행하기</button><button id="clear-code" class="small-button" type="button">지우기</button></div>
+      <p id="editor-status" class="editor-status" role="status" aria-live="polite">처음이라면 예시 게임으로 먼저 확인해 보세요.</p>
+    </section>
+    <section id="preview-panel" class="panel preview-panel" aria-labelledby="preview-title">
+      <div class="preview-bar"><div class="preview-heading"><span class="live-dot" aria-hidden="true"></span><h2 id="preview-title">플레이 화면</h2><span id="run-state" class="badge">대기 중</span></div><div class="preview-actions"><button id="stop-code" class="small-button" type="button" disabled>중지</button><button id="expand-preview" class="small-button" type="button" disabled aria-expanded="false" aria-controls="preview-panel">화면 확대 ↗</button></div></div>
+      <div id="frame-container" class="frame-container"><div id="preview-empty" class="preview-empty"><span aria-hidden="true" class="preview-icon">▶</span><h3>플레이할 준비가 됐나요?</h3><p>코드를 가져온 뒤 실행 버튼을 눌러 주세요.<br>예시 게임으로 바로 시작해도 좋아요.</p><span class="preview-caption">YOUR CODE. YOUR PLAYGROUND.</span></div></div>
+      <p id="preview-status" class="preview-status" role="status" aria-live="polite">휴대폰에서는 화면 확대를 누르면 더 편하게 플레이할 수 있어요.</p>
+    </section>
+  </div>
+  <section id="diagnostics" class="diagnostics" aria-labelledby="diagnostics-title" hidden><h2 id="diagnostics-title">실행 중 확인할 내용</h2><p>아래 메시지를 코드와 함께 AI에게 보여 주고 수정을 요청해 보세요.</p><ul id="error-list"></ul></section>
+  <section class="runner-tips" aria-label="실행 도움말">
+    <article><span class="tip-number">01 / IPHONE</span><h2>파일 미리보기 대신 Safari에서</h2><p>이 실행기 주소를 Safari에서 열고, 코드를 붙여넣거나 “HTML 파일 선택”으로 파일 앱의 HTML을 가져오세요. 다른 앱 안에서 열었다면 Safari에서 다시 시도해 보세요.</p></article>
+    <article><span class="tip-number">02 / SINGLE FILE</span><h2>외부 파일 없는 게임을 준비해요</h2><p>이번 예시는 외부 라이브러리·이미지·음원 요청을 제한해요. AI에게 “외부 파일 없이 모든 코드를 하나의 HTML에 넣어 줘”라고 요청하세요.</p></article>
+    <article><span class="tip-number">03 / TROUBLESHOOT</span><h2>화면이나 소리가 나오지 않나요?</h2><p>게임 안의 시작 버튼을 먼저 눌러 보세요. 소리는 기기 설정과 브라우저에 따라 달라요. 화면이 잘리면 “화면 크기에 반응하도록 수정해 줘”라고 AI에게 요청하세요.</p></article>
+  </section>
+  <aside class="runner-note"><strong>수업용 실행 공간이에요.</strong> 직접 만든 코드나 출처를 아는 코드만 실행하세요. 브라우저 기능을 제한한 실행 환경이라 저장·로그인·외부 연결이 필요한 게임은 작동하지 않을 수 있어요. 코드 자체의 오류나 무한 반복까지 해결해 주지는 않아요.</aside>
+</main>
+<footer class="wrap footer"><a class="footer-brand" href="./index.html">✦ 플레이랩</a><span>상상하고, 만들고, 플레이하세요.</span><span>HTML 실행기 · 예시 v1.0</span></footer>
+<noscript><p>게임을 실행하려면 브라우저에서 JavaScript를 허용해 주세요.</p></noscript>
+</body></html>
